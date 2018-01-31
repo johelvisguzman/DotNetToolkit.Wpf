@@ -1,0 +1,65 @@
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+# version format
+version: '1.0.0.{build}'
+
+# Do not increment build number for pull requests (GitHub only)
+pull_requests:
+  do_not_increment_build_number: true
+
+branches:
+  only:
+  - master
+
+# Do not build on tags (GitHub only)
+skip_tags: true
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+cache:
+  - packages
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform: Any CPU
+
+# build Configuration, i.e. Debug, Release, etc.
+configuration: Release
+
+os: Visual Studio 2017
+ 
+# enable patching of AssemblyInfo.* files
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+
+before_build:
+  - nuget restore
+
+build:
+  project: DotNetToolkit.Wpf.sln
+
+after_build:
+  - msbuild .\src\DotNetToolkit.Wpf\DotNetToolkit.Wpf.csproj /target:Build /property:Configuration=Release;Platform=AnyCPU /verbosity:normal
+  - msbuild .\src\DotNetToolkit.Wpf.Metro.Dialogs\DotNetToolkit.Wpf.Metro.Dialogs.csproj /target:Build /property:Configuration=Release;Platform=AnyCPU /verbosity:normal
+  - cmd: nuget pack "nuget\DotNetToolkit.Wpf.nuspec" -Version %APPVEYOR_BUILD_VERSION%
+  - cmd: nuget pack "nuget\DotNetToolkit.Wpf.Metro.Dialogs.nuspec" -Version %APPVEYOR_BUILD_VERSION%
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+  
+test_script:
+  - cmd: .\packages\NUnit.ConsoleRunner.3.8.0\tools\nunit3-console.exe .\test\DotNetToolkit.Wpf.Test\bin\Release\DotNetToolkit.Wpf.Test.dll
+
+artifacts:
+  - path: '**\DotNetToolkit.Wpf.*.nupkg'       # find all NuGet packages recursively

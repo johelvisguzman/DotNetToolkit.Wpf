@@ -1,0 +1,35 @@
+﻿<mahControls:MetroWindow x:Class="DotNetToolkit.Wpf.Metro.Dialogs.Demo.MainWindow"
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                         xmlns:mahControls="http://metro.mahapps.com/winfx/xaml/controls"
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         WindowStartupLocation="CenterScreen"
+                         mc:Ignorable="d"
+                         Title="DotNetToolkit.Wpf.Metro.Dialogs Demo">
+    <Grid x:Name="RootGrid">
+        <StackPanel VerticalAlignment="Center">
+            <Button Margin="20"
+                    VerticalAlignment="Top"
+                    Click="ProgressTest_OnClick"
+                    Content="progress"
+                    FontSize="36"
+                    FontWeight="Thin" />
+            <Button Margin="20"
+                    VerticalAlignment="Top"
+                    Click="MessageTest_OnClick"
+                    Content="message"
+                    FontSize="36"
+                    FontWeight="Thin" />
+            <Button Margin="20"
+                    VerticalAlignment="Top"
+                    Click="InputTest_OnClick"
+                    Content="input"
+                    FontSize="36"
+                    FontWeight="Thin" />
+        </StackPanel>
+    </Grid>
+</mahControls:MetroWindow>
+
+
+

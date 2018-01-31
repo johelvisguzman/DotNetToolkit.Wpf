@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="DotNetToolkit.Wpf.Demo.Views.MvvmExampleView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:viewModels="clr-namespace:DotNetToolkit.Wpf.Demo.ViewModels"
+			 xmlns:mvvm="clr-namespace:DotNetToolkit.Wpf.Mvvm;assembly=DotNetToolkit.Wpf"
+			 mvvm:ViewModelLocator.AutoWireViewModel="True"
+			 mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModels:MvvmExampleViewModel, d:IsDesignTimeCreatable=True}">
+	<Grid>
+		<Grid.Resources>
+			<Style x:Key="TextBlockHeaderStyle" TargetType="{x:Type TextBlock}">
+				<Setter Property="Margin" Value="0 5 0 0" />
+				<Setter Property="FontWeight" Value="SemiBold" />
+			</Style>
+		</Grid.Resources>
+		<StackPanel>
+			<TextBlock Text="1. View Model bound by the 'ViewModelLocator.AutorWireViewModel'." Style="{StaticResource TextBlockHeaderStyle}" />
+			<ContentControl Content="{Binding TestMessageOne}" />
+			<TextBlock Text="2. The View model has been initialized by the 'ViewModelLocator.AutorWireViewModel'." Style="{StaticResource TextBlockHeaderStyle}" />
+			<TextBlock Text="{Binding TestMessageTwo}" />
+			<TextBlock Text="3. View bound from the view model by the 'ViewLocator.LocateFor'." Style="{StaticResource TextBlockHeaderStyle}" />
+			<ContentControl Content="{Binding TestChildViewOne}" />
+			<TextBlock Text="4. View bound using the 'ViewLocator.LocateFor' attached property." Style="{StaticResource TextBlockHeaderStyle}" />
+			<ContentControl mvvm:ViewLocator.LocateFor="{Binding TestChildViewModelOne}" />
+			<TextBlock Text="5. No View bound by the 'ViewLocator.LocateFor'." Style="{StaticResource TextBlockHeaderStyle}" />
+			<ContentControl Content="{Binding TestChildViewTwo}" />
+		</StackPanel>
+	</Grid>
+</UserControl>
