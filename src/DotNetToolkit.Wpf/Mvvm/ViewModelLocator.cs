@@ -107,7 +107,7 @@
             if (element.DataContext == null)
                 element.DataContext = LocateFor(element.GetType());
 
-            var viewModelBase = element.DataContext as ViewModelBase;
+            var viewModelBase = element.DataContext as IViewModel;
             if (viewModelBase != null && !viewModelBase.IsInitialized)
             {
                 viewModelBase.Initialize();

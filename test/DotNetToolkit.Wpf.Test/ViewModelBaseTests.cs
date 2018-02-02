@@ -1,6 +1,6 @@
 ﻿namespace DotNetToolkit.Wpf.Test
 {
-    using Common;
+    using ComponentModel;
     using Mvvm;
     using NUnit.Framework;
 
@@ -17,6 +17,12 @@
         public void IsObservableObject()
         {
             Assert.IsTrue(typeof(ObservableObject).IsAssignableFrom(typeof(ViewModelBase)));
+        }
+
+        [Test]
+        public void IsValidatableObject()
+        {
+            Assert.IsTrue(typeof(ValidatableObject).IsAssignableFrom(typeof(ViewModelBase)));
         }
     }
 }

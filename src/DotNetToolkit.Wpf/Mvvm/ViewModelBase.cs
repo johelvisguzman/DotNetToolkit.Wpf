@@ -1,11 +1,11 @@
 ﻿namespace DotNetToolkit.Wpf.Mvvm
 {
-    using Common;
+    using ComponentModel;
 
     /// <summary>
-    /// A base class for the ViewModel classes in the MVVM pattern.
+    /// An implementation of <see cref="IViewModel" />.
     /// </summary>
-    public abstract class ViewModelBase : ObservableObject
+    public abstract class ViewModelBase : ValidatableObject, IViewModel
     {
         #region Fields
 

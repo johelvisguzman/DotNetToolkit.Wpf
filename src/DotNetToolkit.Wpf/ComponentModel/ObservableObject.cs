@@ -1,4 +1,4 @@
-﻿namespace DotNetToolkit.Wpf.Common
+﻿namespace DotNetToolkit.Wpf.ComponentModel
 {
     using System;
     using System.Collections.Generic;
@@ -19,8 +19,8 @@
         /// <summary>
         /// Gets the name for the property whose name matches <paramref name="propertyExpression" />.
         /// </summary>
-        /// <param name="propertyExpression"></param>
         /// <typeparam name="T">The type of the property.</typeparam>
+        /// <param name="propertyExpression">An expression identifying the property that changed</param>
         /// <returns>The name of the property.</returns>
         protected static string GetPropertyName<T>(Expression<Func<T>> propertyExpression)
         {
