@@ -36,16 +36,6 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\build\Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PackageIconUrl>https://raw.githubusercontent.com/johelvisguzman/DotNetToolkit.Repository/master/Toolkit.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/johelvisguzman/DotNetToolkit.Repository</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/johelvisguzman/DotNetToolkit.Repository/blob/master/LICENSE.md</PackageLicenseUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/johelvisguzman/DotNetToolkit.Repository</RepositoryUrl>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -61,10 +51,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\ObservableObject.cs" />
+    <Compile Include="ComponentModel\ObservableObject.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandGeneric.cs" />
+    <Compile Include="ComponentModel\ValidatableObject.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Mvvm\IViewModel.cs" />
     <Compile Include="Mvvm\ViewLocator.cs" />
     <Compile Include="Mvvm\ViewModelBase.cs" />
     <Compile Include="Mvvm\ViewModelLocator.cs" />
