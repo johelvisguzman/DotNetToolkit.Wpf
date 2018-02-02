@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelayCommandGenericTests.cs" />
     <Compile Include="RelayCommandTests.cs" />
+    <Compile Include="ValidatableObjectTests.cs" />
     <Compile Include="ViewLocatorTests.cs" />
     <Compile Include="ViewModelBaseTests.cs" />
     <Compile Include="ViewModelLocatorTests.cs" />
