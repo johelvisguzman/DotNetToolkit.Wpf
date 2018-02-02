@@ -38,6 +38,11 @@
             CloseByEscape = DialogSettings.CloseByEscape;
             CloseOnOverlay = DialogSettings.CloseOnOverlay;
 
+            if (DialogSettings.TitleBarBackground != null)
+            {
+                TitleBarBackground = DialogSettings.TitleBarBackground;
+            }
+
             if (!double.IsNaN(DialogSettings.DialogMessageFontSize))
             {
                 DialogMessageFontSize = DialogSettings.DialogMessageFontSize;
@@ -143,6 +148,11 @@
         /// The FontFamily property specifies the font family of the title.
         /// </summary>
         public FontFamily TitleFontFamily { get; set; }
+
+        /// <summary>
+        /// Gets or sets the title background.
+        /// </summary>
+        public Brush TitleBarBackground { get; set; }
 
         /// <summary>
         /// Gets or sets if the close button is visible.
