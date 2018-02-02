@@ -1,6 +1,7 @@
 ﻿namespace DotNetToolkit.Wpf.Metro.Dialogs
 {
     using MahApps.Metro.SimpleChildWindow;
+    using System;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
@@ -167,6 +168,66 @@
             window.ShowChildWindowAsync(dialog, container);
 
             return dialog.WaitForIsOpenChangedAsync().ContinueWith(_ => new ProgressDialogController(dialog));
+        }
+
+        /// <summary>
+        /// Creates a child window CustomDialog inside of the current window dialog container.
+        /// </summary>
+        /// <param name="window">The window.</param>
+        /// <param name="title">The title of the CustomDialog.</param>
+        /// <param name="content">The data contained within the CustomDialog.</param>
+        /// <param name="buttonPressCallback">A callback function to be executed when a button is pressed.</param>
+        /// <param name="style">The type of buttons to use.</param>
+        /// <param name="settings">Optional Settings that override the global metro dialog settings.</param>
+        /// <param name="overlayFillBehavior">The overlay fill behavior.</param>
+        /// <returns>A task promising the result of which button was pressed.</returns>
+        public static Task<MessageDialogResult> ShowChildWindowCustomAsync(this Window window, string title, object content, Func<MessageDialogResult, bool> buttonPressCallback = null, MessageDialogStyle style = MessageDialogStyle.Affirmative, ChildWindowDialogSettings settings = null, ChildWindowManager.OverlayFillBehavior overlayFillBehavior = ChildWindowManager.OverlayFillBehavior.WindowContent)
+        {
+            var dialog = new CustomDialog(settings)
+            {
+                Title = title,
+                DialogContent = content,
+                ButtonStyle = style
+            };
+
+            window.ShowChildWindowAsync<Task<MessageDialogResult>>(dialog, overlayFillBehavior);
+
+            return dialog.WaitForButtonPressAsync(buttonPressCallback).ContinueWith(y =>
+            {
+                dialog.Dispatcher.Invoke(() => dialog.Close(y));
+
+                return y;
+            }).Unwrap();
+        }
+
+        /// <summary>
+        /// Creates a child window CustomDialog on the given container.
+        /// </summary>
+        /// <param name="window">The window.</param>
+        /// <param name="title">The title of the CustomDialog.</param>
+        /// <param name="content">The data contained within the CustomDialog.</param>
+        /// <param name="container">The container.</param>
+        /// <param name="buttonPressCallback">A callback function to be executed when a button is pressed.</param>
+        /// <param name="style">The type of buttons to use.</param>
+        /// <param name="settings">Optional Settings that override the global metro dialog settings.</param>
+        /// <returns>A task promising the result of which button was pressed.</returns>
+        public static Task<MessageDialogResult> ShowChildWindowCustomAsync(this Window window, string title, object content, Panel container, Func<MessageDialogResult, bool> buttonPressCallback = null, MessageDialogStyle style = MessageDialogStyle.Affirmative, ChildWindowDialogSettings settings = null)
+        {
+            var dialog = new CustomDialog(settings)
+            {
+                Title = title,
+                DialogContent = content,
+                ButtonStyle = style
+            };
+
+            window.ShowChildWindowAsync<Task<MessageDialogResult>>(dialog, container);
+
+            return dialog.WaitForButtonPressAsync(buttonPressCallback).ContinueWith(y =>
+            {
+                dialog.Dispatcher.Invoke(() => dialog.Close(y));
+
+                return y;
+            }).Unwrap();
         }
     }
 }
