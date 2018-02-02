@@ -1,7 +1,10 @@
 ﻿namespace DotNetToolkit.Wpf.Metro.Dialogs.Demo
 {
+    using System;
     using System.Threading.Tasks;
     using System.Windows;
+    using ViewModels;
+    using Views;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -78,6 +81,35 @@
                 return;
 
             await this.ShowChildWindowMessageAsync("Hello", "Hello " + result + "!", MessageDialogStyle.Affirmative, mySettings);
+        }
+
+        private async void CustomTest_OnClick(object sender, RoutedEventArgs e)
+        {
+            var mySettings = new ChildWindowDialogSettings
+            {
+                AllowMove = true,
+                AffirmativeButtonText = "Submit",
+                NegativeButtonText = "Close"
+            };
+
+            var viewModel = new ExampleFormViewModel();
+            var view = new ExampleFormView
+            {
+                DataContext = viewModel
+            };
+
+            Func<MessageDialogResult, bool> callback = (result) =>
+            {
+                if (result == MessageDialogResult.Affirmative)
+                {
+                    if (!viewModel.IsValid)
+                        return false;
+                }
+
+                return true;
+            };
+
+            await this.ShowChildWindowCustomAsync("Enter/Edit Form Details", view, callback, MessageDialogStyle.AffirmativeAndNegative, mySettings);
         }
     }
 }

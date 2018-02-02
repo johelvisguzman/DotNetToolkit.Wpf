@@ -27,6 +27,12 @@
                     Content="input"
                     FontSize="36"
                     FontWeight="Thin" />
+            <Button Margin="20"
+                    VerticalAlignment="Top"
+                    Click="CustomTest_OnClick"
+                    Content="custom"
+                    FontSize="36"
+                    FontWeight="Thin" />
         </StackPanel>
     </Grid>
 </mahControls:MetroWindow>
