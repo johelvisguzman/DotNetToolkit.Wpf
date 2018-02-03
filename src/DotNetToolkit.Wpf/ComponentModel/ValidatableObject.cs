@@ -7,6 +7,7 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// A base class for objects of which the properties can be invalidated.
