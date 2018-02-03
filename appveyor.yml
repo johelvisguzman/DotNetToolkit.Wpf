@@ -59,7 +59,7 @@ after_build:
 #---------------------------------#
   
 test_script:
-  - cmd: .\packages\NUnit.ConsoleRunner.3.8.0\tools\nunit3-console.exe .\test\DotNetToolkit.Wpf.Test\bin\Release\DotNetToolkit.Wpf.Test.dll
+  - cmd: .\packages\NUnit.ConsoleRunner.3.8.0\tools\nunit3-console.exe .\test\DotNetToolkit.Wpf.Test\bin\Release\DotNetToolkit.Wpf.Test.dll --result=myresults.xml;format=AppVeyor
 
 artifacts:
   - path: '**\DotNetToolkit.Wpf.*.nupkg'       # find all NuGet packages recursively
