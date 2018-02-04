@@ -54,12 +54,5 @@ after_build:
   - cmd: nuget pack "nuget\DotNetToolkit.Wpf.nuspec" -Version %APPVEYOR_BUILD_VERSION%
   - cmd: nuget pack "nuget\DotNetToolkit.Wpf.Metro.Dialogs.nuspec" -Version %APPVEYOR_BUILD_VERSION%
 
-#---------------------------------#
-#       tests configuration       #
-#---------------------------------#
-  
-test_script:
-  - cmd: .\packages\NUnit.ConsoleRunner.3.8.0\tools\nunit3-console.exe .\test\DotNetToolkit.Wpf.Test\bin\Release\DotNetToolkit.Wpf.Test.dll
-
 artifacts:
   - path: '**\DotNetToolkit.Wpf.*.nupkg'       # find all NuGet packages recursively
