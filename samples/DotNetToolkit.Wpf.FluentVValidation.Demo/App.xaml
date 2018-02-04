@@ -1,0 +1,26 @@
+﻿<Application x:Class="DotNetToolkit.Wpf.FluentVValidation.Demo.App"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 StartupUri="MainWindow.xaml">
+	<Application.Resources>
+		<ResourceDictionary>
+			<Style TargetType="{x:Type TextBox}">
+				<Setter Property="Validation.ErrorTemplate">
+					<Setter.Value>
+						<ControlTemplate>
+							<Grid>
+								<Border BorderBrush="#FFCB2E2E" BorderThickness="1" Background="#11FF0000" IsHitTestVisible="False" x:Name="errorBorder"/>
+								<AdornedElementPlaceholder x:Name="placeholder" />
+							</Grid>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Style.Triggers>
+					<Trigger Property="Validation.HasError" Value="True">
+						<Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>
