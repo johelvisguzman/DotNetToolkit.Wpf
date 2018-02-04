@@ -60,7 +60,7 @@
         /// <returns>
         /// <c>true</c> if the value of the property has been successful assigned; otherwise, <c>false</c>.
         /// </returns>
-        protected bool Set<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
+        protected virtual bool Set<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, newValue))
                 return false;
