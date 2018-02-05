@@ -104,7 +104,7 @@
             var element = (FrameworkElement)sender;
             element.Loaded -= OnElementLoaded;
 
-            var viewModelBase = element.DataContext as ViewModelBase;
+            var viewModelBase = element.DataContext as IViewModel;
             if (viewModelBase != null && !viewModelBase.IsInitialized)
             {
                 viewModelBase.Initialize();

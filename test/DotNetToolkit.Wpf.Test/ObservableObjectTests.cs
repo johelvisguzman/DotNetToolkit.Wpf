@@ -1,12 +1,13 @@
 ﻿namespace DotNetToolkit.Wpf.Test
 {
-    using Common;
+    using ComponentModel;
     using NUnit.Framework;
+    using System.ComponentModel;
 
     [TestFixture]
     public class ObservableObjectTests
     {
-        public class TestObservableObject : ObservableObject
+        public class MockObservableObject : ObservableObject
         {
             private string _testPropertyOne;
             public string TestPropertyOne
@@ -46,10 +47,16 @@
         }
 
         [Test]
+        public void IsINotifyPropertyChanged()
+        {
+            Assert.IsTrue(typeof(INotifyPropertyChanged).IsAssignableFrom(typeof(ObservableObject)));
+        }
+
+        [Test]
         public void RaisePropertyChanged_Raises_PropertyChanged_Event()
         {
             var eventIsRaised = false;
-            var obj = new TestObservableObject();
+            var obj = new MockObservableObject();
 
             obj.PropertyChanged += (sender, e) => eventIsRaised = true;
             obj.TestPropertyThree = "Random Value";
@@ -61,7 +68,7 @@
         public void RaisePropertyChanged_With_Expression_Raises_PropertyChanged_Event()
         {
             var eventIsRaised = false;
-            var obj = new TestObservableObject();
+            var obj = new MockObservableObject();
 
             obj.PropertyChanged += (sender, e) => eventIsRaised = true;
             obj.TestPropertyFour = "Random Value";
@@ -73,7 +80,7 @@
         public void Set_Raises_PropertyChanged_Event()
         {
             var eventIsRaised = false;
-            var obj = new TestObservableObject();
+            var obj = new MockObservableObject();
 
             obj.PropertyChanged += (sender, e) => eventIsRaised = true;
             obj.TestPropertyOne = "Random Value";
@@ -85,7 +92,7 @@
         public void Set_With_Expression_Raises_PropertyChanged_Event()
         {
             var eventIsRaised = false;
-            var obj = new TestObservableObject();
+            var obj = new MockObservableObject();
 
             obj.PropertyChanged += (sender, e) => eventIsRaised = true;
             obj.TestPropertyTwo = "Random Value";
