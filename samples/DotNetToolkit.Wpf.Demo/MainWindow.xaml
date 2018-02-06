@@ -8,10 +8,13 @@
         mc:Ignorable="d"
         Title="DotNetToolkit.Wpf.Demo Demo">
     <Grid>
-		<TabControl>
-			<TabItem Header="Mvvm">
-				<views:MvvmExampleView />
-			</TabItem>
-		</TabControl>
+        <TabControl>
+            <TabItem Header="Mvvm">
+                <views:MvvmExampleView />
+            </TabItem>
+            <TabItem Header="DataPager">
+                <views:DataPagerExampleView />
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
