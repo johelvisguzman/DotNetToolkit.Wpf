@@ -57,6 +57,17 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandGeneric.cs" />
     <Compile Include="ComponentModel\ValidatableObject.cs" />
+    <Compile Include="Data\PagedCollectionView\CollectionViewGroupInternal.cs" />
+    <Compile Include="Data\PagedCollectionView\CollectionViewGroupRoot.cs" />
+    <Compile Include="Data\PagedCollectionView\IPagedCollectionView.cs" />
+    <Compile Include="Data\PagedCollectionView\PageChangingEventArgs.cs" />
+    <Compile Include="Data\PagedCollectionView\PagedCollectionView.cs" />
+    <Compile Include="Data\PagedCollectionView\PagedCollectionViewResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PagedCollectionViewResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PagedCollectionView\TypeHelper.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Mvvm\IViewModel.cs" />
     <Compile Include="Mvvm\ViewLocator.cs" />
@@ -68,6 +79,12 @@
     <None Include="..\..\build\Key.snk">
       <Link>Properties\Key.snk</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\PagedCollectionView\PagedCollectionViewResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PagedCollectionViewResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
