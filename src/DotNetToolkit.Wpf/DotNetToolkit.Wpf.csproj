@@ -68,7 +68,7 @@
       <DependentUpon>PagedCollectionViewResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Data\PagedCollectionView\TypeHelper.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Mvvm\IViewModel.cs" />
     <Compile Include="Mvvm\ViewLocator.cs" />
     <Compile Include="Mvvm\ViewModelBase.cs" />

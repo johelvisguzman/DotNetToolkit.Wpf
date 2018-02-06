@@ -1,4 +1,4 @@
-﻿namespace DotNetToolkit.Wpf.Extensions
+﻿namespace DotNetToolkit.Wpf.Common
 {
     internal static class StringExtensions
     {
