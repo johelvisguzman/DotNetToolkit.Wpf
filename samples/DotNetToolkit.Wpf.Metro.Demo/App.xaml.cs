@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DotNetToolkit.Wpf.Metro.Dialogs.Demo
+namespace DotNetToolkit.Wpf.Metro.Demo
 {
     /// <summary>
     /// Interaction logic for App.xaml

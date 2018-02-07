@@ -1,4 +1,4 @@
-﻿namespace DotNetToolkit.Wpf.Metro.Dialogs.Demo.Views
+﻿namespace DotNetToolkit.Wpf.Metro.Demo.Views
 {
     /// <summary>
     /// Interaction logic for ChildExmpleView.xaml

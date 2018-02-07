@@ -1,4 +1,4 @@
-﻿namespace DotNetToolkit.Wpf.Metro.Dialogs.Demo.ViewModels
+﻿namespace DotNetToolkit.Wpf.Metro.Demo.ViewModels
 {
     using Annotations;
     using System;

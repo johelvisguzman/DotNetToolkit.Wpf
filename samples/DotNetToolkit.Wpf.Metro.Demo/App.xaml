@@ -1,4 +1,4 @@
-﻿<Application x:Class="DotNetToolkit.Wpf.Metro.Dialogs.Demo.App"
+﻿<Application x:Class="DotNetToolkit.Wpf.Metro.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">

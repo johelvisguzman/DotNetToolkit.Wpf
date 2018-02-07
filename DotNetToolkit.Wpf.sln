@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{03C4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf.Demo", "samples\DotNetToolkit.Wpf.Demo\DotNetToolkit.Wpf.Demo.csproj", "{26528E54-A119-4B62-A5ED-20E91CE07892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf.Metro.Dialogs.Demo", "samples\DotNetToolkit.Wpf.Metro.Dialogs.Demo\DotNetToolkit.Wpf.Metro.Dialogs.Demo.csproj", "{B02B12DC-F0A8-400E-94C6-6DA765F06AC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf.Metro.Demo", "samples\DotNetToolkit.Wpf.Metro.Demo\DotNetToolkit.Wpf.Metro.Demo.csproj", "{B02B12DC-F0A8-400E-94C6-6DA765F06AC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf", "src\DotNetToolkit.Wpf\DotNetToolkit.Wpf.csproj", "{BE891A79-4DFA-4825-B68A-3B6E4B397FEF}"
 EndProject

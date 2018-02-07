@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DotNetToolkit.Wpf.Metro.Dialogs.Demo")]
+[assembly: AssemblyTitle("DotNetToolkit.Wpf.Metro.Demo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DotNetToolkit.Wpf.Metro.Dialogs.Demo")]
+[assembly: AssemblyProduct("DotNetToolkit.Wpf.Metro.Demo")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

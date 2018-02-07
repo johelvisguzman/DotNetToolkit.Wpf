@@ -1,19 +1,24 @@
-﻿namespace DotNetToolkit.Wpf.Metro.Dialogs.Demo
+﻿namespace DotNetToolkit.Wpf.Metro.Demo.Views
 {
     using System;
     using System.Threading.Tasks;
     using System.Windows;
+    using Dialogs;
+    using MahApps.Metro.Controls;
     using ViewModels;
-    using Views;
 
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for DialogsExampleView.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class DialogsExampleView
     {
-        public MainWindow()
+        private readonly MetroWindow _mainMetroWindow;
+
+        public DialogsExampleView()
         {
             InitializeComponent();
+
+            _mainMetroWindow = Application.Current.MainWindow as MetroWindow;
         }
 
         private async void ProgressTest_OnClick(object sender, RoutedEventArgs e)
@@ -24,7 +29,7 @@
                 NegativeButtonText = "Close now"
             };
 
-            var controller = await this.ShowChildWindowProgressAsync("Please wait...", "We are baking some cupcakes!", true, mySettings);
+            var controller = await _mainMetroWindow.ShowChildWindowProgressAsync("Please wait...", "We are baking some cupcakes!", true, mySettings);
 
             controller.SetIndeterminate();
 
@@ -47,11 +52,11 @@
 
             if (controller.IsCanceled)
             {
-                await this.ShowChildWindowMessageAsync("No cupcakes!", "You stopped baking!", MessageDialogStyle.Affirmative, mySettings);
+                await _mainMetroWindow.ShowChildWindowMessageAsync("No cupcakes!", "You stopped baking!", MessageDialogStyle.Affirmative, mySettings);
             }
             else
             {
-                await this.ShowChildWindowMessageAsync("Cupcakes!", "Your cupcakes are finished! Enjoy!", MessageDialogStyle.Affirmative, mySettings);
+                await _mainMetroWindow.ShowChildWindowMessageAsync("Cupcakes!", "Your cupcakes are finished! Enjoy!", MessageDialogStyle.Affirmative, mySettings);
             }
         }
 
@@ -65,7 +70,7 @@
                 FirstAuxiliaryButtonText = "Cancel"
             };
 
-            await this.ShowChildWindowMessageAsync("Hello!", "Welcome to the world of metro!", MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, mySettings);
+            await _mainMetroWindow.ShowChildWindowMessageAsync("Hello!", "Welcome to the world of metro!", MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, mySettings);
         }
 
         private async void InputTest_OnClick(object sender, RoutedEventArgs e)
@@ -75,12 +80,12 @@
                 AllowMove = true
             };
 
-            var result = await this.ShowChildWindowInputAsync("Hello!", "What is your name?", mySettings);
+            var result = await _mainMetroWindow.ShowChildWindowInputAsync("Hello!", "What is your name?", mySettings);
 
             if (string.IsNullOrEmpty(result)) //user pressed cancel
                 return;
 
-            await this.ShowChildWindowMessageAsync("Hello", "Hello " + result + "!", MessageDialogStyle.Affirmative, mySettings);
+            await _mainMetroWindow.ShowChildWindowMessageAsync("Hello", "Hello " + result + "!", MessageDialogStyle.Affirmative, mySettings);
         }
 
         private async void CustomTest_OnClick(object sender, RoutedEventArgs e)
@@ -109,7 +114,7 @@
                 return true;
             };
 
-            await this.ShowChildWindowCustomAsync("Enter/Edit Form Details", view, callback, MessageDialogStyle.AffirmativeAndNegative, mySettings);
+            await _mainMetroWindow.ShowChildWindowCustomAsync("Enter/Edit Form Details", view, callback, MessageDialogStyle.AffirmativeAndNegative, mySettings);
         }
     }
 }

@@ -30,7 +30,7 @@ using System;
 // ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable InconsistentNaming
 
-namespace DotNetToolkit.Wpf.Metro.Dialogs.Demo.Annotations
+namespace DotNetToolkit.Wpf.Metro.Demo.Annotations
 {
   /// <summary>
   /// Indicates that the value of the marked element could be <c>null</c> sometimes,

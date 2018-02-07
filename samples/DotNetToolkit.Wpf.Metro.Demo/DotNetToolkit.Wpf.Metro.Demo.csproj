@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B02B12DC-F0A8-400E-94C6-6DA765F06AC4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DotNetToolkit.Wpf.Metro.Dialogs.Demo</RootNamespace>
-    <AssemblyName>DotNetToolkit.Wpf.Metro.Dialogs.Demo</AssemblyName>
+    <RootNamespace>DotNetToolkit.Wpf.Metro.Demo</RootNamespace>
+    <AssemblyName>DotNetToolkit.Wpf.Metro.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -64,23 +64,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\ExampleFormViewModel.cs" />
+    <Compile Include="Views\DialogsExampleView.xaml.cs">
+      <DependentUpon>DialogsExampleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExampleFormView.xaml.cs">
       <DependentUpon>ExampleFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Views\DialogsExampleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ExampleFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
