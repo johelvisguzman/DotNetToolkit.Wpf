@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>DotNetToolkit.Wpf.Metro</id>
+        <version>$version$</version>
+        <title>DotNetToolkit.Wpf.Metro</title>
+        <authors>Johelvis Guzman</authors>
+        <owners>Johelvis Guzman</owners>
+        <licenseUrl>https://github.com/johelvisguzman/DotNetToolkit.Wpf/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/johelvisguzman/DotNetToolkit.Wpf</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/johelvisguzman/DotNetToolkit.Wpf/master/Toolkit.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A toolkit that allows to create dialogs for the MahApps.Metro framework.</description>
+        <copyright>Copyright (c) Johelvis Guzman 2018</copyright>
+		<dependencies>
+			<dependency id="DotNetToolkit.Wpf" version="1.2.0" />
+			<dependency id="MahApps.Metro" version="1.5.0" />
+		</dependencies>
+    </metadata>
+	<files>
+		<file src="..\src\DotNetToolkit.Wpf.Metro\bin\Release\DotNetToolkit.Wpf.Metro.*" target="lib\net461" />		
+	</files>
+</package>
