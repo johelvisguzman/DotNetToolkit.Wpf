@@ -67,8 +67,12 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\ExampleFormViewModel.cs" />
+    <Compile Include="Views\DataPagerExampleView.xaml.cs">
+      <DependentUpon>DataPagerExampleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DialogsExampleView.xaml.cs">
       <DependentUpon>DialogsExampleView.xaml</DependentUpon>
     </Compile>
@@ -80,6 +84,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DataPagerExampleView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -123,6 +131,14 @@
     <ProjectReference Include="..\..\src\DotNetToolkit.Wpf.Metro.Dialogs\DotNetToolkit.Wpf.Metro.Dialogs.csproj">
       <Project>{95DD9491-96C0-43D9-ACE0-FD22A65C6F44}</Project>
       <Name>DotNetToolkit.Wpf.Metro.Dialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\DotNetToolkit.Wpf.Metro\DotNetToolkit.Wpf.Metro.csproj">
+      <Project>{89802858-956d-425c-8114-477753854ec5}</Project>
+      <Name>DotNetToolkit.Wpf.Metro</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\DotNetToolkit.Wpf\DotNetToolkit.Wpf.csproj">
+      <Project>{be891a79-4dfa-4825-b68a-3b6e4b397fef}</Project>
+      <Name>DotNetToolkit.Wpf</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
