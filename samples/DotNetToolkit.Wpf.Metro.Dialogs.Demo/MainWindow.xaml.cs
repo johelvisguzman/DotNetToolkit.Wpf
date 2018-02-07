@@ -98,18 +98,18 @@
                 DataContext = viewModel
             };
 
-            Func<MessageDialogResult, bool> callback = (result) =>
+            Func<MessageDialogResult, Task<bool>> callbackAsync = (result) =>
             {
                 if (result == MessageDialogResult.Affirmative)
                 {
                     if (!viewModel.IsValid)
-                        return false;
+                        return Task.FromResult(false);
                 }
 
-                return true;
+                return Task.FromResult(true);
             };
 
-            await this.ShowChildWindowCustomAsync("Enter/Edit Form Details", view, callback, MessageDialogStyle.AffirmativeAndNegative, mySettings);
+            await this.ShowChildWindowCustomAsync("Enter/Edit Form Details", view, callbackAsync, MessageDialogStyle.AffirmativeAndNegative, mySettings);
         }
     }
 }
