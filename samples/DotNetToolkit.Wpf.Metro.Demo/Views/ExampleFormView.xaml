@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="DotNetToolkit.Wpf.Metro.Demo.Views.ExampleFormView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:DotNetToolkit.Wpf.Metro.Demo.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="200"
+             d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance viewModels:ExampleFormViewModel}">
+    <AdornerDecorator>
+        <StackPanel>
+            <TextBlock Text="Name" />
+            <TextBox Text="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 0" />
+            <TextBlock Text="Notes" Margin="0 10 0 0" />
+            <TextBox Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" Height="80" Margin="0 5 0 0" />
+        </StackPanel>
+    </AdornerDecorator>
+</UserControl>

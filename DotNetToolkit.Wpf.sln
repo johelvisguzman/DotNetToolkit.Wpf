@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C30A9054-9137-445C-93BF-750E540B6A76}"
 EndProject
@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{03C4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf.Demo", "samples\DotNetToolkit.Wpf.Demo\DotNetToolkit.Wpf.Demo.csproj", "{26528E54-A119-4B62-A5ED-20E91CE07892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf.Metro.Dialogs.Demo", "samples\DotNetToolkit.Wpf.Metro.Dialogs.Demo\DotNetToolkit.Wpf.Metro.Dialogs.Demo.csproj", "{B02B12DC-F0A8-400E-94C6-6DA765F06AC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf.Metro.Demo", "samples\DotNetToolkit.Wpf.Metro.Demo\DotNetToolkit.Wpf.Metro.Demo.csproj", "{B02B12DC-F0A8-400E-94C6-6DA765F06AC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf", "src\DotNetToolkit.Wpf\DotNetToolkit.Wpf.csproj", "{BE891A79-4DFA-4825-B68A-3B6E4B397FEF}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf.Test", "test\DotNetToolkit.Wpf.Test\DotNetToolkit.Wpf.Test.csproj", "{773C21F8-3836-49CB-95DE-7A897984EA3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf.FluentVValidation.Demo", "samples\DotNetToolkit.Wpf.FluentVValidation.Demo\DotNetToolkit.Wpf.FluentVValidation.Demo.csproj", "{8FCCA84F-F990-4D6D-BB82-D3143E3E9CC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetToolkit.Wpf.Metro", "src\DotNetToolkit.Wpf.Metro\DotNetToolkit.Wpf.Metro.csproj", "{89802858-956D-425C-8114-477753854EC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{8FCCA84F-F990-4D6D-BB82-D3143E3E9CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FCCA84F-F990-4D6D-BB82-D3143E3E9CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FCCA84F-F990-4D6D-BB82-D3143E3E9CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89802858-956D-425C-8114-477753854EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89802858-956D-425C-8114-477753854EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89802858-956D-425C-8114-477753854EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89802858-956D-425C-8114-477753854EC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{95DD9491-96C0-43D9-ACE0-FD22A65C6F44} = {C30A9054-9137-445C-93BF-750E540B6A76}
 		{773C21F8-3836-49CB-95DE-7A897984EA3D} = {5852869C-8587-41FA-8121-AED2A3F93EE9}
 		{8FCCA84F-F990-4D6D-BB82-D3143E3E9CC6} = {03C436C1-572C-4BA7-8B84-6DCBCD5A8FFD}
+		{89802858-956D-425C-8114-477753854EC5} = {C30A9054-9137-445C-93BF-750E540B6A76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7F4B7F9-C445-4552-B08C-677562303BF9}

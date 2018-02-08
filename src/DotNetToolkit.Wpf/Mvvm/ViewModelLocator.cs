@@ -1,6 +1,6 @@
 ﻿namespace DotNetToolkit.Wpf.Mvvm
 {
-    using Extensions;
+    using Common;
     using System;
     using System.Linq;
     using System.Windows;

@@ -3,7 +3,7 @@
 #---------------------------------#
 
 # version format
-version: '1.0.0.{build}'
+version: '1.2.0.{build}'
 
 # Do not increment build number for pull requests (GitHub only)
 pull_requests:
@@ -52,6 +52,7 @@ after_build:
   - msbuild .\src\DotNetToolkit.Wpf\DotNetToolkit.Wpf.csproj /target:Build /property:Configuration=Release;Platform=AnyCPU /verbosity:normal
   - msbuild .\src\DotNetToolkit.Wpf.Metro.Dialogs\DotNetToolkit.Wpf.Metro.Dialogs.csproj /target:Build /property:Configuration=Release;Platform=AnyCPU /verbosity:normal
   - cmd: nuget pack "nuget\DotNetToolkit.Wpf.nuspec" -Version %APPVEYOR_BUILD_VERSION%
+  - cmd: nuget pack "nuget\DotNetToolkit.Wpf.Metro.nuspec" -Version %APPVEYOR_BUILD_VERSION%
   - cmd: nuget pack "nuget\DotNetToolkit.Wpf.Metro.Dialogs.nuspec" -Version %APPVEYOR_BUILD_VERSION%
 
 artifacts:
