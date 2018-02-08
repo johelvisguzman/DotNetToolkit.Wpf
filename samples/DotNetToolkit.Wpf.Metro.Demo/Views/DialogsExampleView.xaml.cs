@@ -1,10 +1,10 @@
 ﻿namespace DotNetToolkit.Wpf.Metro.Demo.Views
 {
+    using Dialogs;
+    using MahApps.Metro.Controls;
     using System;
     using System.Threading.Tasks;
     using System.Windows;
-    using Dialogs;
-    using MahApps.Metro.Controls;
     using ViewModels;
 
     /// <summary>
@@ -103,18 +103,18 @@
                 DataContext = viewModel
             };
 
-            Func<MessageDialogResult, bool> callback = (result) =>
+            Func<MessageDialogResult, Task<bool>> callbackAsync = (result) =>
             {
                 if (result == MessageDialogResult.Affirmative)
                 {
                     if (!viewModel.IsValid)
-                        return false;
+                        return Task.FromResult(false);
                 }
 
-                return true;
+                return Task.FromResult(true);
             };
 
-            await _mainMetroWindow.ShowChildWindowCustomAsync("Enter/Edit Form Details", view, callback, MessageDialogStyle.AffirmativeAndNegative, mySettings);
+            await _mainMetroWindow.ShowChildWindowCustomAsync("Enter/Edit Form Details", view, callbackAsync, MessageDialogStyle.AffirmativeAndNegative, mySettings);
         }
     }
 }

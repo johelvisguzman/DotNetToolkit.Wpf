@@ -176,14 +176,14 @@
         /// <param name="window">The window.</param>
         /// <param name="title">The title of the CustomDialog.</param>
         /// <param name="content">The data contained within the CustomDialog.</param>
-        /// <param name="buttonPressCallback">A callback function to be executed when a button is pressed.</param>
+        /// <param name="buttonPressCallbackAsync">A callback function to be executed when a button is pressed asynchronous.</param>
         /// <param name="style">The type of buttons to use.</param>
         /// <param name="settings">Optional Settings that override the global metro dialog settings.</param>
         /// <param name="overlayFillBehavior">The overlay fill behavior.</param>
         /// <returns>A task promising the result of which button was pressed.</returns>
-        public static Task<MessageDialogResult> ShowChildWindowCustomAsync(this Window window, string title, object content, Func<MessageDialogResult, bool> buttonPressCallback = null, MessageDialogStyle style = MessageDialogStyle.Affirmative, ChildWindowDialogSettings settings = null, ChildWindowManager.OverlayFillBehavior overlayFillBehavior = ChildWindowManager.OverlayFillBehavior.WindowContent)
+        public static Task<MessageDialogResult> ShowChildWindowCustomAsync(this Window window, string title, object content, Func<MessageDialogResult, Task<bool>> buttonPressCallbackAsync = null, MessageDialogStyle style = MessageDialogStyle.Affirmative, ChildWindowDialogSettings settings = null, ChildWindowManager.OverlayFillBehavior overlayFillBehavior = ChildWindowManager.OverlayFillBehavior.WindowContent)
         {
-            var dialog = new CustomDialog(settings)
+            var dialog = new CustomDialog(settings, buttonPressCallbackAsync)
             {
                 Title = title,
                 DialogContent = content,
@@ -192,7 +192,7 @@
 
             window.ShowChildWindowAsync<Task<MessageDialogResult>>(dialog, overlayFillBehavior);
 
-            return dialog.WaitForButtonPressAsync(buttonPressCallback).ContinueWith(y =>
+            return dialog.WaitForButtonPressAsync().ContinueWith(y =>
             {
                 dialog.Dispatcher.Invoke(() => dialog.Close(y));
 
@@ -207,13 +207,13 @@
         /// <param name="title">The title of the CustomDialog.</param>
         /// <param name="content">The data contained within the CustomDialog.</param>
         /// <param name="container">The container.</param>
-        /// <param name="buttonPressCallback">A callback function to be executed when a button is pressed.</param>
+        /// <param name="buttonPressCallbackAsync">A callback function to be executed when a button is pressed asynchronous.</param>
         /// <param name="style">The type of buttons to use.</param>
         /// <param name="settings">Optional Settings that override the global metro dialog settings.</param>
         /// <returns>A task promising the result of which button was pressed.</returns>
-        public static Task<MessageDialogResult> ShowChildWindowCustomAsync(this Window window, string title, object content, Panel container, Func<MessageDialogResult, bool> buttonPressCallback = null, MessageDialogStyle style = MessageDialogStyle.Affirmative, ChildWindowDialogSettings settings = null)
+        public static Task<MessageDialogResult> ShowChildWindowCustomAsync(this Window window, string title, object content, Panel container, Func<MessageDialogResult, Task<bool>> buttonPressCallbackAsync = null, MessageDialogStyle style = MessageDialogStyle.Affirmative, ChildWindowDialogSettings settings = null)
         {
-            var dialog = new CustomDialog(settings)
+            var dialog = new CustomDialog(settings, buttonPressCallbackAsync)
             {
                 Title = title,
                 DialogContent = content,
@@ -222,7 +222,7 @@
 
             window.ShowChildWindowAsync<Task<MessageDialogResult>>(dialog, container);
 
-            return dialog.WaitForButtonPressAsync(buttonPressCallback).ContinueWith(y =>
+            return dialog.WaitForButtonPressAsync().ContinueWith(y =>
             {
                 dialog.Dispatcher.Invoke(() => dialog.Close(y));
 

@@ -11,18 +11,22 @@
     /// </summary>
     public partial class CustomDialog : BaseChildWindowDialog
     {
+        private readonly Func<MessageDialogResult, Task<bool>> _buttonPressCallbackAsync;
+
         internal CustomDialog()
-            : this(null)
+            : this(null, null)
         {
         }
 
-        internal CustomDialog(ChildWindowDialogSettings settings)
+        internal CustomDialog(ChildWindowDialogSettings settings, Func<MessageDialogResult, Task<bool>> buttonPressCallbackAsync = null)
             : base(settings)
         {
+            _buttonPressCallbackAsync = buttonPressCallbackAsync ?? (result => Task.FromResult(true));
+
             InitializeComponent();
         }
 
-        internal Task<MessageDialogResult> WaitForButtonPressAsync(Func<MessageDialogResult, bool> buttonPressCallback = null)
+        internal Task<MessageDialogResult> WaitForButtonPressAsync()
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -78,18 +82,13 @@
 
             Action cleanUpHandlers = null;
 
-            if (buttonPressCallback == null)
-            {
-                buttonPressCallback = result => true;
-            }
-
-            var cancellationTokenRegistration = DialogSettings.CancellationToken.Register(() =>
+            var cancellationTokenRegistration = DialogSettings.CancellationToken.Register(async () =>
             {
                 var result = ButtonStyle == MessageDialogStyle.Affirmative
                     ? MessageDialogResult.Affirmative
                     : MessageDialogResult.Negative;
 
-                if (buttonPressCallback(result))
+                if (await _buttonPressCallbackAsync(result))
                 {
                     cleanUpHandlers?.Invoke();
                     tcs.TrySetResult(result);
@@ -113,11 +112,11 @@
                 cancellationTokenRegistration.Dispose();
             };
 
-            negativeKeyHandler = (sender, e) =>
+            negativeKeyHandler = async (sender, e) =>
             {
                 if (e.Key == Key.Enter)
                 {
-                    if (buttonPressCallback(MessageDialogResult.Negative))
+                    if (await _buttonPressCallbackAsync(MessageDialogResult.Negative))
                     {
                         cleanUpHandlers();
 
@@ -126,11 +125,11 @@
                 }
             };
 
-            affirmativeKeyHandler = (sender, e) =>
+            affirmativeKeyHandler = async (sender, e) =>
             {
                 if (e.Key == Key.Enter)
                 {
-                    if (buttonPressCallback(MessageDialogResult.Affirmative))
+                    if (await _buttonPressCallbackAsync(MessageDialogResult.Affirmative))
                     {
                         cleanUpHandlers();
 
@@ -139,11 +138,11 @@
                 }
             };
 
-            firstAuxKeyHandler = (sender, e) =>
+            firstAuxKeyHandler = async (sender, e) =>
             {
                 if (e.Key == Key.Enter)
                 {
-                    if (buttonPressCallback(MessageDialogResult.FirstAuxiliary))
+                    if (await _buttonPressCallbackAsync(MessageDialogResult.FirstAuxiliary))
                     {
                         cleanUpHandlers();
 
@@ -152,11 +151,11 @@
                 }
             };
 
-            secondAuxKeyHandler = (sender, e) =>
+            secondAuxKeyHandler = async (sender, e) =>
             {
                 if (e.Key == Key.Enter)
                 {
-                    if (buttonPressCallback(MessageDialogResult.SecondAuxiliary))
+                    if (await _buttonPressCallbackAsync(MessageDialogResult.SecondAuxiliary))
                     {
                         cleanUpHandlers();
 
@@ -165,9 +164,9 @@
                 }
             };
 
-            negativeHandler = (sender, e) =>
+            negativeHandler = async (sender, e) =>
             {
-                if (buttonPressCallback(MessageDialogResult.Negative))
+                if (await _buttonPressCallbackAsync(MessageDialogResult.Negative))
                 {
                     cleanUpHandlers();
 
@@ -177,9 +176,9 @@
                 }
             };
 
-            affirmativeHandler = (sender, e) =>
+            affirmativeHandler = async (sender, e) =>
             {
-                if (buttonPressCallback(MessageDialogResult.Affirmative))
+                if (await _buttonPressCallbackAsync(MessageDialogResult.Affirmative))
                 {
                     cleanUpHandlers();
 
@@ -189,9 +188,9 @@
                 }
             };
 
-            firstAuxHandler = (sender, e) =>
+            firstAuxHandler = async (sender, e) =>
             {
-                if (buttonPressCallback(MessageDialogResult.FirstAuxiliary))
+                if (await _buttonPressCallbackAsync(MessageDialogResult.FirstAuxiliary))
                 {
                     cleanUpHandlers();
 
@@ -201,9 +200,9 @@
                 }
             };
 
-            secondAuxHandler = (sender, e) =>
+            secondAuxHandler = async (sender, e) =>
             {
-                if (buttonPressCallback(MessageDialogResult.SecondAuxiliary))
+                if (await _buttonPressCallbackAsync(MessageDialogResult.SecondAuxiliary))
                 {
                     cleanUpHandlers();
 
@@ -213,15 +212,15 @@
                 }
             };
 
-            escapeKeyHandler = (sender, e) =>
+            escapeKeyHandler = async (sender, e) =>
             {
                 if (e.Key == Key.Escape)
                 {
-                    var result = ButtonStyle == MessageDialogStyle.Affirmative 
-                        ? MessageDialogResult.Affirmative 
+                    var result = ButtonStyle == MessageDialogStyle.Affirmative
+                        ? MessageDialogResult.Affirmative
                         : MessageDialogResult.Negative;
 
-                    if (buttonPressCallback(result))
+                    if (await _buttonPressCallbackAsync(result))
                     {
                         cleanUpHandlers();
 
@@ -230,7 +229,7 @@
                 }
                 else if (e.Key == Key.Enter)
                 {
-                    if (buttonPressCallback(MessageDialogResult.Affirmative))
+                    if (await _buttonPressCallbackAsync(MessageDialogResult.Affirmative))
                     {
                         cleanUpHandlers();
 
