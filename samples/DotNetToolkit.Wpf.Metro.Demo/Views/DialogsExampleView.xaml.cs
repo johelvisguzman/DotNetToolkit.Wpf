@@ -94,7 +94,8 @@
             {
                 AllowMove = true,
                 AffirmativeButtonText = "Submit",
-                NegativeButtonText = "Close"
+                NegativeButtonText = "Close",
+                ChildWindowWidth = 400
             };
 
             var viewModel = new ExampleFormViewModel();

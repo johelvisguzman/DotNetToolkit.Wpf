@@ -37,7 +37,7 @@
             AllowMove = DialogSettings.AllowMove;
             CloseByEscape = DialogSettings.CloseByEscape;
             CloseOnOverlay = DialogSettings.CloseOnOverlay;
-
+            
             if (DialogSettings.TitleBarBackground != null)
             {
                 TitleBarBackground = DialogSettings.TitleBarBackground;
@@ -46,6 +46,16 @@
             if (!double.IsNaN(DialogSettings.DialogMessageFontSize))
             {
                 DialogMessageFontSize = DialogSettings.DialogMessageFontSize;
+            }
+
+            if (!double.IsNaN(DialogSettings.ChildWindowWidth))
+            {
+                ChildWindowWidth = DialogSettings.ChildWindowWidth;
+            }
+
+            if (!double.IsNaN(DialogSettings.ChildWindowHeight))
+            {
+                ChildWindowHeight = DialogSettings.ChildWindowHeight;
             }
 
             Initialize();
@@ -61,8 +71,6 @@
         private void Initialize()
         {
             Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("pack://application:,,,/DotNetToolkit.Wpf.Metro.Dialogs;component/Themes/Generic.xaml") });
-
-            ChildWindowWidth = 400;
 
             Loaded += (sender, args) => { OnLoaded(); };
         }
@@ -112,7 +120,19 @@
             DefaultButtonFocus = MessageDialogResult.Negative;
             CancellationToken = CancellationToken.None;
             DialogMessageFontSize = Double.NaN;
+            ChildWindowWidth = Double.NaN;
+            ChildWindowHeight = Double.NaN;
         }
+
+        /// <summary>
+        /// Gets or sets the width of the child window.
+        /// </summary>
+        public double ChildWindowWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the height of the child window.
+        /// </summary>
+        public double ChildWindowHeight { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the child window can be moved inside the overlay container.

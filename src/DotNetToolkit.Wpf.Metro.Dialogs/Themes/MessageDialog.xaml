@@ -5,7 +5,7 @@
     <dialogs:BaseChildWindowDialog.CommandBindings>
         <CommandBinding Command="Copy" Executed="OnKeyCopyExecuted" />
     </dialogs:BaseChildWindowDialog.CommandBindings>
-    <Grid Margin="10 10 10 -10">
+    <Grid Margin="10 10 10 -10" MinWidth="400">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
