@@ -4,7 +4,7 @@
                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                                xmlns:dialogs="clr-namespace:DotNetToolkit.Wpf.Metro.Dialogs"
                                Cursor="Wait">
-	<Grid>
+    <Grid MinWidth="400">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
