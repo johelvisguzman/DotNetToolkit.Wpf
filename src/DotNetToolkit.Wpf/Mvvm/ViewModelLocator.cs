@@ -78,6 +78,9 @@
             {
                 if (enable.GetValueOrDefault())
                 {
+                    if (element.DataContext == null)
+                        element.DataContext = LocateFor(element.GetType());
+
                     if (element.IsLoaded)
                     {
                         OnElementLoaded(element, new RoutedEventArgs());
@@ -103,10 +106,7 @@
         {
             var element = (FrameworkElement)sender;
             element.Loaded -= OnElementLoaded;
-
-            if (element.DataContext == null)
-                element.DataContext = LocateFor(element.GetType());
-
+            
             var viewModelBase = element.DataContext as IViewModel;
             if (viewModelBase != null && !viewModelBase.IsInitialized)
             {
