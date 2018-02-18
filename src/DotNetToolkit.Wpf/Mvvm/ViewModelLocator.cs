@@ -13,6 +13,8 @@
         private const string DefaultViewSuffix = "View";
         private const string DefaultViewModelSuffix = "ViewModel";
 
+        private static Func<Type, object> _defaultViewModelFactory = type => Activator.CreateInstance(type);
+
         /// <summary>
         /// An attached property that wires the corresponding view model to a <see cref="FrameworkElement" />.
         /// </summary>
@@ -42,6 +44,15 @@
         }
 
         /// <summary>
+        /// Sets the default view model factory.
+        /// </summary>
+        /// <param name="viewModelFactory">The view model factory which provides the ViewModel type as a parameter.</param>
+        public static void SetDefaultViewModelFactory(Func<Type, object> viewModelFactory)
+        {
+            _defaultViewModelFactory = viewModelFactory;
+        }
+
+        /// <summary>
         /// Locates a view model for the specified view type.
         /// </summary>
         /// <param name="viewType">The type of the view.</param>
@@ -52,7 +63,7 @@
             var viewModelName = viewType.Name.ReplaceEnd(DefaultViewSuffix, DefaultViewModelSuffix);
             var viewModelType = assembly.GetTypes().FirstOrDefault(x => x.Name.Equals(viewModelName));
 
-            return viewModelType != null ? Activator.CreateInstance(viewModelType) : null;
+            return viewModelType != null ? _defaultViewModelFactory(viewModelType) : null;
         }
 
         /// <summary>
@@ -78,6 +89,9 @@
             {
                 if (enable.GetValueOrDefault())
                 {
+                    if (element.DataContext == null)
+                        element.DataContext = LocateFor(element.GetType());
+
                     if (element.IsLoaded)
                     {
                         OnElementLoaded(element, new RoutedEventArgs());
@@ -103,10 +117,7 @@
         {
             var element = (FrameworkElement)sender;
             element.Loaded -= OnElementLoaded;
-
-            if (element.DataContext == null)
-                element.DataContext = LocateFor(element.GetType());
-
+            
             var viewModelBase = element.DataContext as IViewModel;
             if (viewModelBase != null && !viewModelBase.IsInitialized)
             {
