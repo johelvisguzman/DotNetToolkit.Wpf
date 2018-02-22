@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="DotNetToolkit.Wpf.Demo.Views.BusyIndicatorExampleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:DotNetToolkit.Wpf.Controls;assembly=DotNetToolkit.Wpf">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <controls:BusyIndicator IsBusy="True" Margin="10" OverlayStyle="{x:Null}" />
+        <controls:BusyIndicator IsBusy="True" Content="Loading..." Margin="10" Background="#FF252525" Foreground="#FFFFFFFF" OverlayStyle="{x:Null}" />
+        <controls:BusyIndicator IsBusy="True" Content="Loading..." Margin="10" OverlayStyle="{x:Null}">
+            <controls:BusyIndicator.ContentTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Please Wait" FontSize="20"/>
+                        <TextBlock Text="{Binding}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </controls:BusyIndicator.ContentTemplate>
+        </controls:BusyIndicator>
+    </StackPanel>
+</UserControl>

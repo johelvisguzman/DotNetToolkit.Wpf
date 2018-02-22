@@ -59,6 +59,7 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandGeneric.cs" />
     <Compile Include="ComponentModel\ValidatableObject.cs" />
+    <Compile Include="Controls\BusyIndicator.cs" />
     <Compile Include="Controls\Common\DependencyObjectExtensions.cs" />
     <Compile Include="Controls\DataPager\DataPager.cs" />
     <Compile Include="Controls\DataPager\DataPagerAutomationPeer.cs" />
