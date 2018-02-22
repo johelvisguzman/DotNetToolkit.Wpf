@@ -76,6 +76,9 @@
     <Compile Include="ViewModels\ChildExampleViewModel.cs" />
     <Compile Include="ViewModels\ChildNoViewExampleViewModel.cs" />
     <Compile Include="ViewModels\MvvmExampleViewModel.cs" />
+    <Compile Include="Views\BusyIndicatorExampleView.xaml.cs">
+      <DependentUpon>BusyIndicatorExampleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChildExampleView.xaml.cs">
       <DependentUpon>ChildExampleView.xaml</DependentUpon>
     </Compile>
@@ -97,6 +100,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\BusyIndicatorExampleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChildExampleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
