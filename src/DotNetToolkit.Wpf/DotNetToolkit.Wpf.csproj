@@ -61,6 +61,8 @@
     <Compile Include="ComponentModel\ValidatableObject.cs" />
     <Compile Include="Controls\BusyIndicator.cs" />
     <Compile Include="Controls\Common\DependencyObjectExtensions.cs" />
+    <Compile Include="Controls\Common\ObjectCollection.cs" />
+    <Compile Include="Controls\Common\VisualStates.cs" />
     <Compile Include="Controls\DataPager\DataPager.cs" />
     <Compile Include="Controls\DataPager\DataPagerAutomationPeer.cs" />
     <Compile Include="Controls\DataPager\PagerDisplayMode.cs" />
@@ -70,6 +72,7 @@
       <DependentUpon>PagerResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Controls\WeakEventListener.cs" />
+    <Compile Include="Converters\ProgressBarWidthConverter.cs" />
     <Compile Include="Data\PagedCollectionView\CollectionViewGroupInternal.cs" />
     <Compile Include="Data\PagedCollectionView\CollectionViewGroupRoot.cs" />
     <Compile Include="Data\PagedCollectionView\IPagedCollectionView.cs" />
