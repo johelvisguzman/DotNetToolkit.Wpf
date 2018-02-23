@@ -70,6 +70,9 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\ExampleFormViewModel.cs" />
+    <Compile Include="Views\BusyIndicatorExampleView.xaml.cs">
+      <DependentUpon>BusyIndicatorExampleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DataPagerExampleView.xaml.cs">
       <DependentUpon>DataPagerExampleView.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BusyIndicatorExampleView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
