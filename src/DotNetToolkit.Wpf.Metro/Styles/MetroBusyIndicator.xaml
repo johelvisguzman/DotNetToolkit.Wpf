@@ -91,15 +91,14 @@
                                                       ContentTemplate="{TemplateBinding BusyContentTemplate}"
                                                       HorizontalAlignment="Center"
                                                       Margin="8" />
-                                    <mahControls:MetroProgressBar Grid.Row="1"
-                                                 Style="{TemplateBinding ProgressBarStyle}">
+                                    <ProgressBar Grid.Row="1" Style="{TemplateBinding ProgressBarStyle}">
                                         <ProgressBar.Width>
                                             <MultiBinding Converter="{StaticResource ProgressBarWidthConverter}">
                                                 <Binding Path="ActualWidth" ElementName="busyContent" />
                                                 <Binding Path="MinWidth" ElementName="_grid" />
                                             </MultiBinding>
                                         </ProgressBar.Width>
-                                    </mahControls:MetroProgressBar>
+                                    </ProgressBar>
                                 </Grid>
                             </Border>
                         </Border>
