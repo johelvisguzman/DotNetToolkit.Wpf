@@ -17,6 +17,9 @@
             <TabItem Header="DataPager">
                 <views:DataPagerExampleView />
             </TabItem>
+            <TabItem Header="BusyIndicator">
+                <views:BusyIndicatorExampleView />
+            </TabItem>
         </TabControl>
     </Grid>
 </mahControls:MetroWindow>
