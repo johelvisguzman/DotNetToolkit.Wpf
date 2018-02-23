@@ -10,7 +10,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/DotNetToolkit.Wpf.Metro;component/Styles/MetroCircleDataPager.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DotNetToolkit.Wpf.Metro;component/Styles/MetroDataPager.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DotNetToolkit.Wpf.Metro;component/Styles/MetroBusyIndicator.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
