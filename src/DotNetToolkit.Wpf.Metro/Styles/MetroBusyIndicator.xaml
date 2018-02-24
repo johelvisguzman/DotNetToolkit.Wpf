@@ -5,6 +5,10 @@
                     xmlns:converters="clr-namespace:DotNetToolkit.Wpf.Converters;assembly=DotNetToolkit.Wpf"
                     xmlns:mahControls="http://metro.mahapps.com/winfx/xaml/controls">
 
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ProgressBar.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+					
     <converters:ProgressBarWidthConverter x:Key="ProgressBarWidthConverter" />
     
     <ControlTemplate x:Key="BusyIndicatorTemplate" TargetType="{x:Type controls:BusyIndicator}">
@@ -123,7 +127,7 @@
         </Setter>
         <Setter Property="ProgressBarStyle">
             <Setter.Value>
-                <Style TargetType="ProgressBar">
+                <Style TargetType="ProgressBar" BasedOn="{StaticResource MetroProgressBar}">
                     <Setter Property="IsIndeterminate" Value="True" />
                     <Setter Property="Height" Value="15" />
                     <Setter Property="Margin" Value="8,0,8,8" />
