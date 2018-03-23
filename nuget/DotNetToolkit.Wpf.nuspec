@@ -14,6 +14,6 @@
         <copyright>Copyright (c) Johelvis Guzman 2018</copyright>
     </metadata>
 	<files>
-		<file src="..\src\DotNetToolkit.Wpf\bin\Release\DotNetToolkit.Wpf.*" target="lib\net461" />
+		<file src="..\src\DotNetToolkit.Wpf\bin\Release\DotNetToolkit.Wpf.*" target="lib\net451" />
 	</files>
 </package>
