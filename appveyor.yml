@@ -12,6 +12,7 @@ pull_requests:
 branches:
   only:
   - master
+  - dev
 
 # Do not build on tags (GitHub only)
 skip_tags: true
