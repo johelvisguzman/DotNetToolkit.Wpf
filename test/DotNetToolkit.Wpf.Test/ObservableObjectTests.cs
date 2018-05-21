@@ -13,14 +13,14 @@
             public string TestPropertyOne
             {
                 get { return _testPropertyOne; }
-                set { Set(ref _testPropertyOne, value); }
+                set { SetProperty(ref _testPropertyOne, value); }
             }
 
             private string _testPropertyTwo;
             public string TestPropertyTwo
             {
                 get { return _testPropertyTwo; }
-                set { Set(() => TestPropertyTwo, ref _testPropertyTwo, value); }
+                set { SetProperty(() => TestPropertyTwo, ref _testPropertyTwo, value); }
             }
 
             private string _testPropertyThree;

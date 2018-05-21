@@ -9,21 +9,21 @@
         public string Name
         {
             get { return _name; }
-            set { Set(ref _name, value); }
+            set { SetProperty(ref _name, value); }
         }
 
         private int? _age;
         public int? Age
         {
             get { return _age; }
-            set { Set(ref _age, value); }
+            set { SetProperty(ref _age, value); }
         }
 
         private string _notes;
         public string Notes
         {
             get { return _notes; }
-            set { Set(ref _notes, value); }
+            set { SetProperty(ref _notes, value); }
         }
     }
 

@@ -8,35 +8,35 @@
         public string TestMessageOne
         {
             get { return _testMessageOne; }
-            set { Set(ref _testMessageOne, value); }
+            set { SetProperty(ref _testMessageOne, value); }
         }
 
         private string _testMessageTwo;
         public string TestMessageTwo
         {
             get { return _testMessageTwo; }
-            set { Set(ref _testMessageTwo, value); }
+            set { SetProperty(ref _testMessageTwo, value); }
         }
 
         private object _testChildViewOne;
         public object TestChildViewOne
         {
             get { return _testChildViewOne; }
-            set { Set(ref _testChildViewOne, value); }
+            set { SetProperty(ref _testChildViewOne, value); }
         }
 
         private object _testChildViewTwo;
         public object TestChildViewTwo
         {
             get { return _testChildViewTwo; }
-            set { Set(ref _testChildViewTwo, value); }
+            set { SetProperty(ref _testChildViewTwo, value); }
         }
 
         private object _testChildViewModelOne;
         public object TestChildViewModelOne
         {
             get { return _testChildViewModelOne; }
-            set { Set(ref _testChildViewModelOne, value); }
+            set { SetProperty(ref _testChildViewModelOne, value); }
         }
 
         public MvvmExampleViewModel()

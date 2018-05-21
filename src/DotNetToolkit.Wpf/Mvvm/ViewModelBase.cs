@@ -34,7 +34,7 @@
         public string DisplayName
         {
             get { return _displayName; }
-            set { Set(ref _displayName, value); }
+            set { SetProperty(ref _displayName, value); }
         }
 
         /// <summary>
@@ -46,7 +46,7 @@
         public bool IsInitialized
         {
             get { return _isInitialized; }
-            protected set { Set(ref _isInitialized, value); }
+            protected set { SetProperty(ref _isInitialized, value); }
         }
 
         #endregion
