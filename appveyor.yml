@@ -3,7 +3,7 @@
 #---------------------------------#
 
 # version format
-version: '1.0.2.{build}'
+version: '1.0.3.{build}'
 
 # Do not increment build number for pull requests (GitHub only)
 pull_requests:
