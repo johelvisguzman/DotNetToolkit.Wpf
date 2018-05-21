@@ -201,6 +201,21 @@
         }
 
         /// <summary>
+        /// Creates a child window CustomDialog inside of the current window dialog container.
+        /// </summary>
+        /// <param name="window">The window.</param>
+        /// <param name="title">The title of the CustomDialog.</param>
+        /// <param name="content">The data contained within the CustomDialog.</param>
+        /// <param name="style">The type of buttons to use.</param>
+        /// <param name="settings">Optional Settings that override the global metro dialog settings.</param>
+        /// <param name="overlayFillBehavior">The overlay fill behavior.</param>
+        /// <returns>A task promising the result of which button was pressed.</returns>
+        public static Task<MessageDialogResult> ShowChildWindowCustomAsync(this Window window, string title, object content, MessageDialogStyle style = MessageDialogStyle.Affirmative, ChildWindowDialogSettings settings = null, ChildWindowManager.OverlayFillBehavior overlayFillBehavior = ChildWindowManager.OverlayFillBehavior.WindowContent)
+        {
+            return ShowChildWindowCustomAsync(window, title, content, (Func<MessageDialogResult, Task<bool>>)null, style, settings, overlayFillBehavior);
+        }
+
+        /// <summary>
         /// Creates a child window CustomDialog on the given container.
         /// </summary>
         /// <param name="window">The window.</param>
@@ -228,6 +243,21 @@
 
                 return y;
             }).Unwrap();
+        }
+
+        /// <summary>
+        /// Creates a child window CustomDialog on the given container.
+        /// </summary>
+        /// <param name="window">The window.</param>
+        /// <param name="title">The title of the CustomDialog.</param>
+        /// <param name="content">The data contained within the CustomDialog.</param>
+        /// <param name="container">The container.</param>
+        /// <param name="style">The type of buttons to use.</param>
+        /// <param name="settings">Optional Settings that override the global metro dialog settings.</param>
+        /// <returns>A task promising the result of which button was pressed.</returns>
+        public static Task<MessageDialogResult> ShowChildWindowCustomAsync(this Window window, string title, object content, Panel container, MessageDialogStyle style = MessageDialogStyle.Affirmative, ChildWindowDialogSettings settings = null)
+        {
+            return ShowChildWindowCustomAsync(window, title, content, container, (Func<MessageDialogResult, Task<bool>>)null, style, settings);
         }
     }
 }
