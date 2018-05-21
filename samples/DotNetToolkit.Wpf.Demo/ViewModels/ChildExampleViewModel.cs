@@ -6,7 +6,7 @@
         public string TestMessageOne
         {
             get { return _testMessageOne; }
-            set { Set(ref _testMessageOne, value); }
+            set { SetProperty(ref _testMessageOne, value); }
         }
 
         public ChildExampleViewModel()

@@ -28,11 +28,11 @@
             return result;
         }
 
-        protected override bool Set<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
+        protected override bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
         {
             ClearErrors(propertyName);
 
-            var isSet = base.Set(ref field, newValue, propertyName);
+            var isSet = base.SetProperty(ref field, newValue, propertyName);
             var result = Validate(propertyName);
 
             if (result != null)
