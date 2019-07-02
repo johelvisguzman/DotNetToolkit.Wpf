@@ -13,6 +13,7 @@
         <description>A toolkit for creating WPF apps using the MahApps.Metro framework.</description>
         <copyright>Copyright (c) Johelvis Guzman 2018</copyright>
 		<dependencies>
+			<dependency id="DotNetToolkit.Wpf" version="1.4.0" />
 			<dependency id="MahApps.Metro" version="1.6.5" />
 		</dependencies>
     </metadata>
