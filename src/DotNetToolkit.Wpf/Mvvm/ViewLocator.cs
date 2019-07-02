@@ -68,9 +68,13 @@
             }
             else
             {
-                element = (FrameworkElement)Activator.CreateInstance(viewType);
-                element.DataContext = viewModel;
-                element.Loaded += OnElementLoaded;
+                element = Activator.CreateInstance(viewType) as FrameworkElement;
+
+                if (element != null)
+                {
+                    element.DataContext = viewModel;
+                    element.Loaded += OnElementLoaded;
+                }
             }
 
             return element;
@@ -102,6 +106,7 @@
         private static void OnElementLoaded(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
+
             element.Loaded -= OnElementLoaded;
 
             var viewModelBase = element.DataContext as IViewModel;
