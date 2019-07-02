@@ -4,6 +4,7 @@
     using System;
     using System.Linq;
     using System.Windows;
+    using System.Windows.Data;
 
     /// <summary>
     /// A simple locator for retrieving a view model for a specified view.
@@ -63,6 +64,9 @@
             var viewModelName = viewType.Name.ReplaceEnd(DefaultViewSuffix, DefaultViewModelSuffix);
             var viewModelType = assembly.GetTypes().FirstOrDefault(x => x.Name.Equals(viewModelName));
 
+            if (viewModelType == viewType)
+                return null;
+
             return viewModelType != null ? _defaultViewModelFactory(viewModelType) : null;
         }
 
@@ -85,12 +89,31 @@
         {
             var element = d as FrameworkElement;
             var enable = e.NewValue as bool?;
+
             if (element != null)
             {
                 if (enable.GetValueOrDefault())
                 {
                     if (element.DataContext == null)
+                    {
                         element.DataContext = LocateFor(element.GetType());
+
+                        var viewModelBase = element.DataContext as IViewModel;
+                        var window = element as Window;
+
+                        // Binds the window's title to the display name
+                        if (viewModelBase != null && window != null)
+                        {
+                            var bind = new Binding(nameof(viewModelBase.DisplayName))
+                            {
+                                Source = viewModelBase,
+                                Mode = BindingMode.TwoWay
+                            };
+
+                            window.SetBinding(Window.TitleProperty, bind);
+                        }
+
+                    }
 
                     if (element.IsLoaded)
                     {
@@ -116,6 +139,7 @@
         private static void OnElementLoaded(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
+
             element.Loaded -= OnElementLoaded;
             
             var viewModelBase = element.DataContext as IViewModel;
