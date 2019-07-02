@@ -13,8 +13,8 @@
         <description>A toolkit that allows to create dialogs for the MahApps.Metro.SimpleChildWindow framework.</description>
         <copyright>Copyright (c) Johelvis Guzman 2018</copyright>
 		<dependencies>
-			<dependency id="MahApps.Metro" version="1.5.0" />
-			<dependency id="MahApps.Metro.SimpleChildWindow" version="1.4.0" />
+			<dependency id="MahApps.Metro" version="1.6.5" />
+			<dependency id="MahApps.Metro.SimpleChildWindow" version="1.5.0" />
 		</dependencies>
     </metadata>
 	<files>
