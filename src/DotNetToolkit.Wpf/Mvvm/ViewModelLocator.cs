@@ -64,6 +64,9 @@
             var viewModelName = viewType.Name.ReplaceEnd(DefaultViewSuffix, DefaultViewModelSuffix);
             var viewModelType = assembly.GetTypes().FirstOrDefault(x => x.Name.Equals(viewModelName));
 
+            if (viewModelType == viewType)
+                return null;
+
             return viewModelType != null ? _defaultViewModelFactory(viewModelType) : null;
         }
 
