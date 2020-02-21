@@ -5,11 +5,7 @@
                     xmlns:converters="clr-namespace:DotNetToolkit.Wpf.Converters;assembly=DotNetToolkit.Wpf"
                     xmlns:mahControls="http://metro.mahapps.com/winfx/xaml/controls">
 
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ProgressBar.xaml" />
-	</ResourceDictionary.MergedDictionaries>
-					
-    <converters:ProgressBarWidthConverter x:Key="ProgressBarWidthConverter" />
+	<converters:ProgressBarWidthConverter x:Key="ProgressBarWidthConverter" />
     
     <ControlTemplate x:Key="BusyIndicatorTemplate" TargetType="{x:Type controls:BusyIndicator}">
         <Grid>
@@ -82,7 +78,7 @@
             <ContentPresenter x:Name="busycontent">
                 <ContentPresenter.Content>
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Border Background="White" BorderThickness="1" CornerRadius="0" BorderBrush="{DynamicResource TextBoxBorderBrush}">
+                        <Border Background="White" BorderThickness="1" CornerRadius="0" BorderBrush="{DynamicResource MahApps.Brushes.TextBox.Border}">
                             <Border Margin="1" Background="{TemplateBinding Background}" CornerRadius="0">
                                 <Grid x:Name="_grid"
                                       MinWidth="150">
@@ -95,14 +91,14 @@
                                                       ContentTemplate="{TemplateBinding BusyContentTemplate}"
                                                       HorizontalAlignment="Center"
                                                       Margin="8" />
-                                    <ProgressBar Grid.Row="1" Style="{TemplateBinding ProgressBarStyle}">
-                                        <ProgressBar.Width>
+                                    <mahControls:MetroProgressBar Grid.Row="1" Style="{TemplateBinding ProgressBarStyle}">
+                                        <mahControls:MetroProgressBar.Width>
                                             <MultiBinding Converter="{StaticResource ProgressBarWidthConverter}">
                                                 <Binding Path="ActualWidth" ElementName="busyContent" />
                                                 <Binding Path="MinWidth" ElementName="_grid" />
                                             </MultiBinding>
-                                        </ProgressBar.Width>
-                                    </ProgressBar>
+                                        </mahControls:MetroProgressBar.Width>
+                                    </mahControls:MetroProgressBar>
                                 </Grid>
                             </Border>
                         </Border>
@@ -113,7 +109,7 @@
     </ControlTemplate>
 
     <Style TargetType="{x:Type controls:BusyIndicator}">
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Control.Background}" />
         <Setter Property="BusyContent" Value="Please wait..." />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Focusable" Value="False" />
@@ -127,7 +123,7 @@
         </Setter>
         <Setter Property="ProgressBarStyle">
             <Setter.Value>
-                <Style TargetType="ProgressBar" BasedOn="{StaticResource MetroProgressBar}">
+                <Style TargetType="{x:Type mahControls:MetroProgressBar}" BasedOn="{StaticResource MahApps.Styles.MetroProgressBar}">
                     <Setter Property="IsIndeterminate" Value="True" />
                     <Setter Property="Height" Value="15" />
                     <Setter Property="Margin" Value="8,0,8,8" />

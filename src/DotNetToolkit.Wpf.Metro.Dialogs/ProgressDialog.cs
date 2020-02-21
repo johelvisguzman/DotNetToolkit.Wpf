@@ -23,7 +23,7 @@
         protected override void OnLoaded()
         {
             NegativeButtonText = DialogSettings.NegativeButtonText;
-            SetResourceReference(ProgressBarForegroundProperty, "AccentColorBrush");
+            SetResourceReference(ProgressBarForegroundProperty, "MahApps.Brushes.Accent");
         }
 
         public static readonly DependencyProperty ProgressBarForegroundProperty = DependencyProperty.Register("ProgressBarForeground", typeof(Brush), typeof(ProgressDialog), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.AffectsRender));

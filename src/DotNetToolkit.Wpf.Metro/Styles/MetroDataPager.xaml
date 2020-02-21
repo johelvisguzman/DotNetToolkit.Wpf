@@ -5,15 +5,11 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:mahControls="http://metro.mahapps.com/winfx/xaml/controls">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <mahConverters:ThicknessToDoubleConverter x:Key="BorderThicknessToStrokeThicknessConverter" />
 
-    <Style x:Key="MetroCircleNumericToggleButtonStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleToggleButtonStyle}">
+    <Style x:Key="MetroCircleNumericToggleButtonStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MahApps.Styles.ToggleButton.Circle}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Foreground" Value="{DynamicResource BlackBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -23,9 +19,9 @@
         <Setter Property="Height" Value="30" />
     </Style>
 
-    <Style x:Key="MetroCirclePageButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
+    <Style x:Key="MetroCirclePageButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Circle}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />
@@ -36,7 +32,7 @@
 
     <Style x:Key="MetroCircleDataPager" TargetType="controls:DataPager">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
         <Setter Property="Foreground" Value="{DynamicResource BlackBrush}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="mahControls:ControlsHelper.CornerRadius" Value="3" />
