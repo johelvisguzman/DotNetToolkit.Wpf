@@ -3,19 +3,21 @@
 #---------------------------------#
 
 # version format
-version: '1.0.4.{build}'
+version: '{build}'
 
 # Do not increment build number for pull requests (GitHub only)
 pull_requests:
   do_not_increment_build_number: true
 
+# disable publishing of .nupkg artifacts to
+# account/project feeds for pull request builds
+nuget:
+  disable_publish_on_pr: true
+
+# branches to build
 branches:
   only:
   - master
-  - dev
-
-# Do not build on tags (GitHub only)
-skip_tags: true
 
 #---------------------------------#
 #    environment configuration    #
@@ -33,29 +35,32 @@ platform: Any CPU
 # build Configuration, i.e. Debug, Release, etc.
 configuration: Release
 
-os: Visual Studio 2017
- 
-# enable patching of AssemblyInfo.* files
-assembly_info:
-  patch: true
-  file: '**\AssemblyInfo.*'
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
+os: Visual Studio 2019
 
 before_build:
-  - nuget restore
+  - dotnet --info
+  - dotnet restore
 
 build:
-  project: DotNetToolkit.Wpf.sln
+  parallel: true                                    # enable MSBuild parallel builds
+  project: DotNetToolkit.Wpf.sln                    # path to Visual Studio solution or project
 
 after_build:
-  - msbuild .\src\DotNetToolkit.Wpf\DotNetToolkit.Wpf.csproj /target:Build /property:Configuration=Release;Platform=AnyCPU /verbosity:normal
-  - msbuild .\src\DotNetToolkit.Wpf.Metro\DotNetToolkit.Wpf.Metro.csproj /target:Build /property:Configuration=Release;Platform=AnyCPU /verbosity:normal
-  - msbuild .\src\DotNetToolkit.Wpf.Metro.Dialogs\DotNetToolkit.Wpf.Metro.Dialogs.csproj /target:Build /property:Configuration=Release;Platform=AnyCPU /verbosity:normal
-  - cmd: nuget pack "nuget\DotNetToolkit.Wpf.nuspec" -Version %APPVEYOR_BUILD_VERSION%
-  - cmd: nuget pack "nuget\DotNetToolkit.Wpf.Metro.nuspec" -Version %APPVEYOR_BUILD_VERSION%
-  - cmd: nuget pack "nuget\DotNetToolkit.Wpf.Metro.Dialogs.nuspec" -Version %APPVEYOR_BUILD_VERSION%
+  - dotnet pack .\src\DotNetToolkit.Wpf\DotNetToolkit.Wpf.csproj --configuration Release
+  - dotnet pack .\src\DotNetToolkit.Wpf.Metro\DotNetToolkit.Wpf.Metro.csproj --configuration Release
+  - dotnet pack .\src\DotNetToolkit.Wpf.Metro.Dialogs\DotNetToolkit.Wpf.Metro.Dialogs.csproj --configuration Release
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
 
 artifacts:
-  - path: '**\DotNetToolkit.Wpf.*.nupkg'       # find all NuGet packages recursively
+  - path: '**\DotNetToolkit.Wpf.*.nupkg'     # find all NuGet packages recursively
+    name: NuGet
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+
+test_script:
+  - dotnet test .\test\DotNetToolkit.Wpf.Test\DotNetToolkit.Wpf.Test.csproj --configuration Release
