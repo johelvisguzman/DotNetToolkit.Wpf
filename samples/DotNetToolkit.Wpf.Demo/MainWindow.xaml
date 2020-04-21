@@ -18,6 +18,9 @@
             <TabItem Header="BusyIndicator">
                 <views:BusyIndicatorExampleView />
             </TabItem>
+            <TabItem Header="DataVirtualization">
+                <views:DataVirtualizationView />
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
