@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.24" />
   </ItemGroup>
 
   <ItemGroup>
