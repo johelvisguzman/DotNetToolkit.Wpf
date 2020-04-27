@@ -33,7 +33,7 @@
         /// Raises the errors changed event for the specified property.
         /// </summary>
         /// <param name="propertyName">The name of the property whose validation errors changed.</param>
-        protected void RaiseErrorsChanged([CallerMemberName] string propertyName = null)
+        public void RaiseErrorsChanged([CallerMemberName] string propertyName = null)
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
@@ -43,7 +43,7 @@
         /// </summary>
         /// <typeparam name="T">The type of the property.</typeparam>
         /// <param name="propertyExpression">An expression identifying the property whose validation errors changed.</param>
-        protected void RaiseErrorsChanged<T>(Expression<Func<T>> propertyExpression)
+        public void RaiseErrorsChanged<T>(Expression<Func<T>> propertyExpression)
         {
             RaiseErrorsChanged(GetPropertyName(propertyExpression));
         }
@@ -53,7 +53,7 @@
         /// </summary>
         /// <param name="propertyName">The name of the property.</param>
         /// <param name="errorMessage">The error message.</param>
-        protected virtual void SetError(string propertyName, string errorMessage)
+        public virtual void SetError(string propertyName, string errorMessage)
         {
             if (!_errors.ContainsKey(propertyName))
             {
@@ -72,7 +72,7 @@
         /// <typeparam name="T">The type of the property.</typeparam>
         /// <param name="propertyExpression">An expression identifying the property to set the validation error for.</param>
         /// <param name="errorMessage">The error message.</param>
-        protected void SetError<T>(Expression<Func<T>> propertyExpression, string errorMessage)
+        public void SetError<T>(Expression<Func<T>> propertyExpression, string errorMessage)
         {
             SetError(GetPropertyName(propertyExpression), errorMessage);
         }
@@ -84,7 +84,24 @@
         /// <returns>
         /// The validation errors for the property or entity.
         /// </returns>
-        public IEnumerable GetErrors(string propertyName)
+        IEnumerable INotifyDataErrorInfo.GetErrors(string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName) || !_errors.ContainsKey(propertyName))
+            {
+                return null;
+            }
+
+            return _errors[propertyName];
+        }
+
+        /// <summary>
+        /// Gets the validation errors for a specified property or for the entire entity.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to retrieve validation errors for; or null or <see cref="F:System.String.Empty" />, to retrieve entity-level errors.</param>
+        /// <returns>
+        /// The validation errors for the property or entity.
+        /// </returns>
+        public IEnumerable<string> GetErrors(string propertyName)
         {
             if (string.IsNullOrEmpty(propertyName) || !_errors.ContainsKey(propertyName))
             {
@@ -102,7 +119,7 @@
         /// <returns>
         /// The validation errors for the property or entity.
         /// </returns>
-        public IEnumerable GetErrors<T>(Expression<Func<T>> propertyExpression)
+        public IEnumerable<string> GetErrors<T>(Expression<Func<T>> propertyExpression)
         {
             return GetErrors(GetPropertyName(propertyExpression));
         }
