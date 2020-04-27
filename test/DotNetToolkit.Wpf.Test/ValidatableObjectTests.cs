@@ -12,11 +12,6 @@
         {
             public string Name { get; set; }
 
-            public void Invalidate()
-            {
-                SetError(() => Name, "The name is required.");
-            }
-
             public void ClearValidationError()
             {
                 ClearErrors(() => Name);
@@ -46,12 +41,17 @@
             var obj = new MockValidatableObject();
 
             Assert.IsFalse(obj.HasErrors);
-            Assert.IsNull(obj.GetErrors(() => obj.Name)?.Cast<string>().ToList().FirstOrDefault());
+            Assert.IsNull(obj.GetErrors(() => obj.Name)?.ToList().FirstOrDefault());
 
-            obj.Invalidate();
+            obj.SetError(() => obj.Name, "The name is invalid.");
+            obj.SetError(() => obj.Name, "The name is unknown.");
 
             Assert.IsTrue(obj.HasErrors);
-            Assert.AreEqual("The name is required.", obj.GetErrors(() => obj.Name).Cast<string>().ToList().FirstOrDefault());
+
+            var errors = obj.GetErrors(() => obj.Name).ToList();
+
+            Assert.AreEqual("The name is invalid.", errors[0]);
+            Assert.AreEqual("The name is unknown.", errors[1]);
         }
 
         [Test]
@@ -61,7 +61,7 @@
 
             Assert.IsFalse(obj.HasErrors);
 
-            obj.Invalidate();
+            obj.SetError(() => obj.Name, "The name is required.");
 
             Assert.IsTrue(obj.HasErrors);
 
@@ -77,7 +77,7 @@
 
             Assert.IsFalse(obj.HasErrors);
 
-            obj.Invalidate();
+            obj.SetError(() => obj.Name, "The name is required.");
 
             Assert.IsTrue(obj.HasErrors);
 
@@ -94,7 +94,7 @@
 
             obj.ErrorsChanged += (sender, e) => eventIsRaised = true;
 
-            obj.Invalidate();
+            obj.SetError(() => obj.Name, "The name is required.");
 
             Assert.IsTrue(eventIsRaised);
         }

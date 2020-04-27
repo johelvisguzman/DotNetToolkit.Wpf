@@ -62,6 +62,10 @@
                     errorMessage
                 });
             }
+            else
+            {
+                _errors[propertyName].Add(errorMessage);
+            }
 
             RaiseErrorsChanged(propertyName);
         }
