@@ -84,7 +84,24 @@
         /// <returns>
         /// The validation errors for the property or entity.
         /// </returns>
-        public IEnumerable GetErrors(string propertyName)
+        IEnumerable INotifyDataErrorInfo.GetErrors(string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName) || !_errors.ContainsKey(propertyName))
+            {
+                return null;
+            }
+
+            return _errors[propertyName];
+        }
+
+        /// <summary>
+        /// Gets the validation errors for a specified property or for the entire entity.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to retrieve validation errors for; or null or <see cref="F:System.String.Empty" />, to retrieve entity-level errors.</param>
+        /// <returns>
+        /// The validation errors for the property or entity.
+        /// </returns>
+        public IEnumerable<string> GetErrors(string propertyName)
         {
             if (string.IsNullOrEmpty(propertyName) || !_errors.ContainsKey(propertyName))
             {
@@ -102,7 +119,7 @@
         /// <returns>
         /// The validation errors for the property or entity.
         /// </returns>
-        public IEnumerable GetErrors<T>(Expression<Func<T>> propertyExpression)
+        public IEnumerable<string> GetErrors<T>(Expression<Func<T>> propertyExpression)
         {
             return GetErrors(GetPropertyName(propertyExpression));
         }
