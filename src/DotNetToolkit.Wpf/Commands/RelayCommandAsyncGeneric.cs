@@ -1,38 +1,40 @@
 ﻿namespace DotNetToolkit.Wpf.Commands
 {
+    using Common;
     using System;
     using System.Diagnostics;
+    using System.Threading.Tasks;
     using System.Windows.Input;
 
     /// <summary>
-    /// A generic command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the CanExecute method is 'true'.
+    /// A generic asynchronous command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the CanExecute method is 'true'.
     /// This class does not allow you to accept command parameters in the Execute and CanExecute callback methods.
     /// </summary>
-    // http://msdn.microsoft.com/en-us/magazine/dd419663.aspx#id0090030
-    public class RelayCommand<T> : ICommand
+    public class RelayCommandAsync<T> : IAsyncCommand
     {
         #region Fields
 
-        private readonly Action<T> _execute;
+        private bool _isExecuting;
+        private readonly Func<T, Task> _execute;
         private readonly Predicate<object> _canExecute;
+        private readonly IErrorHandler _errorHandler;
 
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RelayCommand{T}" /> class.
+        /// Initializes a new instance of the <see cref="RelayCommand" /> class.
         /// </summary>
         /// <param name="execute">The execute.</param>
         /// <param name="canExecute">The can execute.</param>
+        /// <param name="errorHandler">The error handler for the asynchronous command.</param>
         /// <exception cref="ArgumentNullException">execute</exception>
-        public RelayCommand(Action<T> execute, Predicate<object> canExecute = null)
+        public RelayCommandAsync(Func<T, Task> execute, Predicate<object> canExecute = null, IErrorHandler errorHandler = null)
         {
-            if (execute == null)
-                throw new ArgumentNullException(nameof(execute));
-
             _execute = execute;
             _canExecute = canExecute;
+            _errorHandler = errorHandler;
         }
 
         #endregion
@@ -49,7 +51,7 @@
         [DebuggerStepThrough]
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute(parameter);
+            return !_isExecuting && (_canExecute == null ? true : _canExecute(parameter));
         }
 
         /// <summary>
@@ -57,11 +59,20 @@
         /// </summary>
         public event EventHandler CanExecuteChanged;
 
+        void ICommand.Execute(object parameter)
+        {
+            ExecuteAsync(parameter).FireAndForgetSafeAsync(_errorHandler);
+        }
+
+        #endregion
+
+        #region Implementations of IAsyncCommand
+
         /// <summary>
-        /// Defines the method to be called when the command is invoked.
+        /// Asynchronously defines the method to be called when the command is invoked.
         /// </summary>
-        /// <param name="parameter">Data used by the command.  If the command does not require data to be passed, this object can be set to null.</param>
-        public void Execute(object parameter)
+        /// <param name="parameter">Data used by the command. If the command does not require data to be passed, this object can be set to null.</param>
+        public async Task ExecuteAsync(object parameter)
         {
             var val = parameter;
 
@@ -73,18 +84,26 @@
                 }
             }
 
-            if (CanExecute(val) && _execute != null)
+            if (CanExecute(parameter) && _execute != null)
             {
-                if (val == null)
+                try
                 {
-                    if (typeof(T).IsValueType)
-                        _execute(default(T));
+                    _isExecuting = true;
+                    if (val == null)
+                    {
+                        if (typeof(T).IsValueType)
+                            await _execute(default(T));
+                        else
+                            await _execute((T)val);
+                    }
                     else
-                        _execute((T)val);
+                    {
+                        await _execute((T)val);
+                    }
                 }
-                else
+                finally
                 {
-                    _execute((T)val);
+                    _isExecuting = false;
                 }
             }
         }
