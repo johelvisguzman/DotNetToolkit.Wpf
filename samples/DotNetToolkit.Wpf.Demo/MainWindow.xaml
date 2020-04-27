@@ -12,9 +12,6 @@
             <TabItem Header="Mvvm">
                 <views:MvvmExampleView />
             </TabItem>
-            <TabItem Header="DataPager">
-                <views:DataPagerExampleView />
-            </TabItem>
             <TabItem Header="BusyIndicator">
                 <views:BusyIndicatorExampleView />
             </TabItem>
