@@ -55,11 +55,7 @@
         /// <summary>
         /// Occurs when changes occur that affect whether or not the command should execute.
         /// </summary>
-        public event EventHandler CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
-        }
+        public event EventHandler CanExecuteChanged;
 
         /// <summary>
         /// Defines the method to be called when the command is invoked.
@@ -71,6 +67,19 @@
             {
                 _execute();
             }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Raises the <see cref="CanExecuteChanged"/> event to indicate that the return value of the <see cref="CanExecute"/>
+        /// method has changed.
+        /// </summary>
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion
