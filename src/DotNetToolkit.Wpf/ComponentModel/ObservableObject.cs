@@ -35,7 +35,7 @@
         /// Raises <see cref="PropertyChanged" /> for the property whose name matches <paramref name="propertyName" />.
         /// </summary>
         /// <param name="propertyName">The name of the property whose value has changed.</param>
-        protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
