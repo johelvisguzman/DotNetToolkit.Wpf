@@ -32,6 +32,9 @@
         /// <exception cref="ArgumentNullException">execute</exception>
         public RelayCommandAsync(Func<Task> execute, Predicate<object> canExecute = null, IErrorHandler errorHandler = null)
         {
+            if (execute == null)
+                throw new ArgumentNullException(nameof(execute));
+
             _execute = execute;
             _canExecute = canExecute;
             _errorHandler = errorHandler;
